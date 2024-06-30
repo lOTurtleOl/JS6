@@ -107,13 +107,14 @@ class StartGame { // initialize StartGame class to create and manage the game
     } // end of startRound()
 
     playGame() {
-        while (player[0].getTotal() > 0 || player[1].getTotal() > 0) {
-            game.playRound();
-            
-            if (player[0].hand.length == 0) {
-                player[0].deck.shuffle();
-            } else if (player[1].hand.length == 0) {
-                player[1].deck.shuffle();
+        while (this.players[0].getTotal() > 0 && this.players[1].getTotal() > 0) {
+            this.playRound();
+
+            if (this.players[0].hand.length === 0) {
+                player.hand = player.discard;
+            } else if (this.players[1].hand.length === 0) {
+                player.hand = player.discard;
+                this.deck.shuffle(player.hand);
             }
         }
     }
