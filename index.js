@@ -110,16 +110,29 @@ class StartGame { // initialize StartGame class to create and manage the game
     playGame() {
         while (this.players[0].getTotal() > 0 && this.players[1].getTotal() > 0) {
             this.playRound();
-
-            if (this.players[0].hand.length === 0 && this.player) {
-                player.hand = player.discard;
-                player.discard = [];
-                this.deck.shuffle(this.players[0].hand);
-            } else if (this.players[1].hand.length === 0) {
-                player.hand = player.discard;
-                this.deck.shuffle(player.hand);
-            }
         }
+            let player1Score = this.players[0].score;
+            let player2Score = this.players[1].score;
+
+            if (player1Score > player2Score) {
+                console.log(`${this.players[0].name} wins with a score of ${player1Score}`)
+                console.log(`${this.players[1].name} loses with a score of ${player2Score}`)
+            } else if (player2Score > player1Score) {
+                console.log(`${this.players[1].name} wins with a score of ${player2Score}`)
+                console.log(`${this.players[0].name} loses with a score of ${player1Score}`)
+            } else {
+                console.log("It's a tie!");
+            }
+
+            console.log('Thank you for playing!');
+            // if (this.players[0].hand.length === 0) {
+            //     player.hand = player.discard;
+            //     player.discard = [];
+            //     this.deck.shuffle(this.players[0].hand);
+            // } else if (this.players[1].hand.length === 0) {
+            //     player.hand = player.discard;
+            //     this.deck.shuffle(player.hand);
+            // }
     }
 
     compareCards(card1, card2) { // compare card values and show winner
@@ -127,16 +140,16 @@ class StartGame { // initialize StartGame class to create and manage the game
         let value2 = card2.faceCardValue();
 
         if (value1 > value2) {
-            this.players[0].discard.push(card1, card2);
+            // this.players[0].discard.push(card1, card2);
             this.players[0].score++;
             return `${card1.describe()} beats ${card2.describe()}`;
         } else if (value1 < value2) {
-            this.players[1].discard.push(card1, card2);
+            // this.players[1].discard.push(card1, card2);
             this.players[1].score++;
             return `${card2.describe()} beats ${card1.describe()}`;
         } else {
-            this.players[0].discard.push(card1);
-            this.players[1].discard.push(card2);
+            // this.players[0].discard.push(card1);
+            // this.players[1].discard.push(card2);
             return `It's a tie`;
         }
         
@@ -145,7 +158,7 @@ class StartGame { // initialize StartGame class to create and manage the game
     describe() {
         return `Game includes ${this.players.length} players`
     } // end of describe method
-}
+} // end of StartGame class
 
 let player = new Player('Andrew Hughes'); // new instance of Player
 console.log(player.describe());
