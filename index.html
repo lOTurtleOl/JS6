@@ -4,10 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="index.js"></script>
+    <link rel="stylesheet" href="node_modules/mocha/mocha.css">
+
 </head>
 <body>
     <h1>JS6 WAR!</h1>
     
+    <div id="mocha"><p><a href=".">Index</a></p></div>
+    <div id="messages"></div>
+    <div id="fixtures"></div>
+
+    <script src="node_modules/mocha/mocha.js"></script>
+    <script src="node_modules/chai/chai.js"></script>
+    <script src="index.js"></script>
+    <script>mocha.setup('bdd')</script>
+    <script src="index_tests.js"></script>
+    <script>mocha.run()</script>
 </body>
 </html>
