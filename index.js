@@ -63,6 +63,7 @@ class Player { // initialize class to hold player name and current hand
         this.name = name;
         this.hand = [];
         this.discard = [];
+        this.score = 0;
     }
 
     getTotal() {
@@ -70,7 +71,7 @@ class Player { // initialize class to hold player name and current hand
     }
 
     describe() { // describe player info
-        return `Name: ${this.name}\nTotal cards: ${this.getTotal()}\nHand: ${this.hand.length}`;
+        return `Name: ${this.name}\nTotal cards: ${this.getTotal()}\nHand: ${this.hand.length}\nScore: ${this.score}`;
     }
 }
 
@@ -110,8 +111,10 @@ class StartGame { // initialize StartGame class to create and manage the game
         while (this.players[0].getTotal() > 0 && this.players[1].getTotal() > 0) {
             this.playRound();
 
-            if (this.players[0].hand.length === 0) {
+            if (this.players[0].hand.length === 0 && this.player) {
                 player.hand = player.discard;
+                player.discard = [];
+                this.deck.shuffle(this.players[0].hand);
             } else if (this.players[1].hand.length === 0) {
                 player.hand = player.discard;
                 this.deck.shuffle(player.hand);
@@ -125,11 +128,15 @@ class StartGame { // initialize StartGame class to create and manage the game
 
         if (value1 > value2) {
             this.players[0].discard.push(card1, card2);
+            this.players[0].score++;
             return `${card1.describe()} beats ${card2.describe()}`;
         } else if (value1 < value2) {
             this.players[1].discard.push(card1, card2);
+            this.players[1].score++;
             return `${card2.describe()} beats ${card1.describe()}`;
         } else {
+            this.players[0].discard.push(card1);
+            this.players[1].discard.push(card2);
             return `It's a tie`;
         }
         
