@@ -8,7 +8,7 @@ class Card { // initialize card class to hold card individual card info
         return `${this.value} of ${this.suit}`;
     }
 
-    faceCardValue() {
+    faceCardValue() { // assign numeric values to face cards
         if (this.value === 'J') {
             return 11;
         } else if (this.value === 'Q') {
@@ -108,7 +108,7 @@ class StartGame { // initialize StartGame class to create and manage the game
     } // end of startRound()
 
     playGame() {
-        while (this.players[0].getTotal() > 0 && this.players[1].getTotal() > 0) {
+        while (this.players[0].getTotal() > 0 && this.players[1].getTotal() > 0) { // while loop to play rounds until a player hits 0 cards
             this.playRound();
         }
             let player1Score = this.players[0].score;
