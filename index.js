@@ -34,7 +34,6 @@ class Deck { // initialize deck class to create a deck and hold information on w
     createDeck() { // function to create the deck of cards by iterating through two arrays and pushing each combination to the cards array
         const suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades'];
         const values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A']
-        const faceCards = {'J': 11, 'Q': 12, 'K': 13, 'A': 14}
         for (let suit of suits) {
             for (let value of values) {
                 this.cards.push(new Card(value, suit));
